@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Line | circos.js</title>
+        <title>Tracks | circos.js</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.0.0">
@@ -20,10 +20,10 @@
         
     
     
-    <link rel="next" href="../tracks/scatter.html" />
+    <link rel="next" href="heatmap.html" />
     
     
-    <link rel="prev" href="../tracks/stack.html" />
+    <link rel="prev" href="../layout.html" />
     
 
         <script src='https://raw.githack.com/nicgirault/circosJS/master/dist/circosJS.js'></script>
@@ -38,7 +38,7 @@
     
 
         
-    <div class="book" data-level="3.5" data-basepath=".." data-revision="Sat Mar 28 2015 15:27:15 GMT+0100 (CET)">
+    <div class="book" data-level="3" data-basepath=".." data-revision="Sat Mar 28 2015 15:27:15 GMT+0100 (CET)">
     
 
 <div class="book-summary">
@@ -98,7 +98,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3" data-path="tracks/index.html">
+        <li class="chapter active" data-level="3" data-path="tracks/index.html">
             
                 
                     <a href="../tracks/index.html">
@@ -117,7 +117,7 @@
         <li class="chapter " data-level="3.1" data-path="tracks/heatmap.html">
             
                 
-                    <a href="../tracks/heatmap.html">
+                    <a href="heatmap.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.1.</b>
@@ -132,7 +132,7 @@
         <li class="chapter " data-level="3.2" data-path="tracks/histogram.html">
             
                 
-                    <a href="../tracks/histogram.html">
+                    <a href="histogram.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.2.</b>
@@ -147,7 +147,7 @@
         <li class="chapter " data-level="3.3" data-path="tracks/chords.html">
             
                 
-                    <a href="../tracks/chords.html">
+                    <a href="chords.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.3.</b>
@@ -162,7 +162,7 @@
         <li class="chapter " data-level="3.4" data-path="tracks/stack.html">
             
                 
-                    <a href="../tracks/stack.html">
+                    <a href="stack.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.4.</b>
@@ -174,10 +174,10 @@
             
         </li>
     
-        <li class="chapter active" data-level="3.5" data-path="tracks/line.html">
+        <li class="chapter " data-level="3.5" data-path="tracks/line.html">
             
                 
-                    <a href="../tracks/line.html">
+                    <a href="line.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.5.</b>
@@ -192,7 +192,7 @@
         <li class="chapter " data-level="3.6" data-path="tracks/scatter.html">
             
                 
-                    <a href="../tracks/scatter.html">
+                    <a href="scatter.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.6.</b>
@@ -375,24 +375,37 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="line">Line</h1>
-<p>The default configuration is:</p>
-<pre><code class="lang-javascript">{
-  innerRadius: <span class="hljs-number">0</span>,
-  outerRadius: <span class="hljs-number">0</span>,
-  min: <span class="hljs-string">&apos;smart&apos;</span>,
-  max: <span class="hljs-string">&apos;smart&apos;</span>,
-  direction: <span class="hljs-string">&apos;out&apos;</span>,
-  logScale: <span class="hljs-literal">false</span>,
-  color: <span class="hljs-string">&apos;#fd6a62&apos;</span>,
-  fill: <span class="hljs-literal">true</span>,
-  fill_color: <span class="hljs-string">&apos;#d3d3d3&apos;</span>,
-  thickness: <span class="hljs-number">2</span>,
-  max_gap: <span class="hljs-number">10000000</span>,
-  interpolation: <span class="hljs-string">&apos;linear&apos;</span>,
-  axes: ...
-}
+                        <h1 id="tracks">Tracks</h1>
+<p>CircosJS has several types of tracks :</p>
+<ul>
+<li>Chords</li>
+<li>Heatmap</li>
+<li>Histogram</li>
+<li>Line</li>
+<li>Scatter</li>
+<li>Stack</li>
+</ul>
+<p>To add a track to your circos instance you should write something like this:</p>
+<pre><code class="lang-javascript">instance.heatmap(
+    <span class="hljs-string">&apos;my-heatmap&apos;</span>,
+    {
+        <span class="hljs-comment">// your heatmap configuration</span>
+    },
+    heatmap_data
+);
 </code></pre>
+<p>This pattern is similar to all track types:</p>
+<pre><code class="lang-javascript">instance.trackType(<span class="hljs-string">&apos;track-name&apos;</span>, configuration, data);
+</code></pre>
+<p>About the track name:</p>
+<ul>
+<li>Must be unique.</li>
+<li>Should be slug style for simplicity, consistency and compatibility. Example: <code>heatmap-1</code></li>
+<li>Lowercase, a-z, can contain digits, 0-9, can contain dash or dot but not start/end with them.</li>
+<li>Consecutive dashes or dots not allowed.</li>
+<li>50 characters or less.</li>
+</ul>
+<p>Note: As written just above, the track name is used as a class name so you should not use spaces and weird characters and first character should not be a digit.</p>
 
                     
                     </section>
@@ -403,10 +416,10 @@
         </div>
 
         
-        <a href="../tracks/stack.html" class="navigation navigation-prev " aria-label="Previous page: Stack"><i class="fa fa-angle-left"></i></a>
+        <a href="../layout.html" class="navigation navigation-prev " aria-label="Previous page: Layout"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../tracks/scatter.html" class="navigation navigation-next " aria-label="Next page: Scatter"><i class="fa fa-angle-right"></i></a>
+        <a href="heatmap.html" class="navigation navigation-next " aria-label="Next page: Heatmap"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
